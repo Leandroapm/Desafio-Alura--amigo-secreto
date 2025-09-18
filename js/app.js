@@ -15,11 +15,18 @@ function adicionar() {
 }
 
 function sortear() {
+    if (amigos.length < 2) {
+        alert("Adicione pelo menos dois amigos para realizar o sorteio");
+        return;
+    }
+
     embaralhar(amigos); //Embaralhar o array amigos
+    let listaS = document.getElementById("lista-sorteio"); //Pegar a lista sorteada no HTML
+    listaS.innerHTML = ""; //Limpar o resultado anterior
+
     for (let i = 0; i < amigos.length; i++) { //Começar lógica de sortear
         let quemTira = amigos[i];
         let quemFoiTirado = (i === amigos.length - 1) ? amigos[0] : amigos[i + 1];
-        let listaS = document.getElementById("lista-sorteio"); //Pegar a lista sorteada no HTML
         let itemS = document.createElement("li"); //Criar o elemento lista para adicionar o nome sorteado
         itemS.textContent = `${quemTira} -> ${quemFoiTirado}`;
         listaS.appendChild(itemS); //Colocar o sorteio dentro da lista <li></li>
